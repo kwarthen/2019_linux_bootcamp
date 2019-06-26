@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import dicom
-
+import os.path
 from ipywidgets import interact
 import ipywidgets as widgets
 
@@ -24,7 +24,7 @@ def win_lev(img, w, l, maxc=255):
 def view_img_line(img):
     """
     """
-    
+
 
     @interact(i=widgets.IntSlider(min=0, max=img.shape[1], value=img.shape[1]/2, step=4),
               win=widgets.IntSlider(min=1, max=2000, value=1000),
@@ -38,7 +38,7 @@ def view_img_line(img):
         ax2.yaxis.set_visible(False)
         ax2.xaxis.set_visible(False)
         ax1.plot(img[:,i])
-        ax2.axvline(x= i, color="red", linewidth=5, alpha=0.5) 
+        ax2.axvline(x= i, color="red", linewidth=5, alpha=0.5)
         plt.show()
         #sns.distplot(img[s1,j*dx:dx*(j+1),i*dx:dx*(i+1)])
 
@@ -47,4 +47,4 @@ def examine_img(fname=""):
     img = dimg.pixel_array + dimg.RescaleIntercept
 
     view_img_line(img)
-examine_img("/home/jovyan/DATA/Images/PE/Ser_000006/IM-0124-0097.dcm")
+examine_img(os.path.join(os.path.expanduesr("~"), "DATA/Images/PE/Ser_000006/IM-0124-0097.dcm")
