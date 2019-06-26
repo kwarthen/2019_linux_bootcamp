@@ -1,4 +1,5 @@
 from nose.tools import assert_equal
+import os.path
 
 def oct_17(answer=-1):
     try:
