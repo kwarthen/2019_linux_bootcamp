@@ -1,0 +1,25 @@
+version: '3'
+services:
+  notebook:
+    build: ./jupyter
+    ports:
+      - "8997:8888"
+    environment:
+      - USE_HTTPS=yes
+    volumes:
+      - ../DATA:/home/jovyan/DATA:ro
+  web_server:
+    build: ./web-server
+    ports:
+        - "8080:80"
+  myssh:
+    build:
+      context: ./ssh-server
+      dockerfile: Dockerfile
+    environment:
+        - AUTH_MECHANISM=simpleAuth
+        - AUTH_USER=jovyan
+        - AUTH_PASSWORD=jovyan
+        - HTTP_ENABLED=false
+    ports:
+        - "2212:22"
